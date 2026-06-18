@@ -1,0 +1,31 @@
+{
+  "title": "Kwatts",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration Kwatts",
+        "description": "Entrez votre clé API disponible sur {url}",
+        "data": {
+          "api_key": "Clé API"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Clé API invalide. Vérifiez votre clé sur https://apps.kwatts.fr/advices"
+    },
+    "abort": {
+      "already_configured": "Kwatts est déjà configuré."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Kwatts",
+        "description": "L'API Kwatts est limitée à {max_requests} requêtes par jour. Intervalle conseillé : {min_interval} minutes.",
+        "data": {
+          "scan_interval": "Intervalle de mise à jour (minutes)"
+        }
+      }
+    }
+  }
+}
