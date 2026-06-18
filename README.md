@@ -98,8 +98,8 @@ Après l'installation, vous pouvez modifier l'intervalle de mise à jour :
 
 ## Icône
 
-- HACS utilise l'icône du dépôt : `icon.png`
-- Home Assistant utilise les icônes locales de l'intégration : `custom_components/kwatts/icon.png` et `custom_components/kwatts/logo.png`
+- HACS et Home Assistant utilisent les icônes locales : `custom_components/kwatts/brand/icon.png` et `custom_components/kwatts/brand/logo.png`
+- `icon.png` à la racine sert uniquement à l'affichage GitHub (`info.md`)
 - Les entités exposent aussi des icônes `mdi:*` dans Home Assistant pour rester lisibles dans les tableaux de bord
 
 ---

@@ -23,8 +23,8 @@ Cette intégration HACS s'installe directement depuis le contenu du dépôt, san
 
 ## Icône
 
-- HACS utilise `icon.png` à la racine du dépôt.
-- Home Assistant utilise `custom_components/kwatts/icon.png` et `custom_components/kwatts/logo.png`.
+- HACS et Home Assistant utilisent `custom_components/kwatts/brand/icon.png` et `custom_components/kwatts/brand/logo.png`.
+- `icon.png` à la racine sert uniquement à l'affichage de cette page.
 - Les entités ont des icônes `mdi:*` dédiées.
 
 ## Clé API
