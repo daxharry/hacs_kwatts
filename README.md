@@ -1,11 +1,14 @@
 # Kwatts – Intégration Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![GitHub release](https://img.shields.io/github/release/daxharry/kwatts.svg)](https://github.com/daxharry/kwatts/releases)
 
 Intégration non-officielle pour [Kwatts](https://apps.kwatts.fr) dans Home Assistant.
 
-Kwatts fournit des conseils quotidiens sur la qualité de la production solaire et les prix de l'électricité, permettant d'optimiser votre consommation.
+## Objectif
+
+Cette intégration ajoute Kwatts à Home Assistant pour suivre les signaux quotidiens utiles à l'optimisation de la consommation électrique : couleur du jour, code, prix estimé, conseil, statut de disponibilité et prix EPEX Spot France.
+
+Elle interroge l'API Kwatts avec votre clé API, crée les entités Home Assistant correspondantes et actualise les données selon l'intervalle configuré. Le prix EPEX Spot est récupéré séparément depuis Energy-Charts.info.
 
 ---
 
@@ -43,10 +46,12 @@ Le sensor **Statut** reflète l'état de l'intégration en temps réel :
 
 1. Ouvrez HACS dans Home Assistant
 2. Cliquez sur **Intégrations** → ⋮ → **Dépôts personnalisés**
-3. Ajoutez l'URL : `https://github.com/daxharry/kwatts`
+3. Ajoutez l'URL : `https://github.com/daxharry/hacs_kwatts`
 4. Catégorie : **Intégration**
 5. Cliquez sur **Télécharger**
 6. Redémarrez Home Assistant
+
+Cette intégration HACS s'installe depuis le contenu de la branche du dépôt, sans archive de release GitHub. Le fichier `hacs.json` définit donc `zip_release: false`.
 
 ## Installation manuelle
 
@@ -88,6 +93,14 @@ Après l'installation, vous pouvez modifier l'intervalle de mise à jour :
 
 - Home Assistant ≥ 2023.1.0
 - Un compte Kwatts avec une clé API valide
+
+---
+
+## Icône
+
+- HACS utilise l'icône du dépôt : `icon.png`
+- Home Assistant utilise les icônes locales de l'intégration : `custom_components/kwatts/icon.png` et `custom_components/kwatts/logo.png`
+- Les entités exposent aussi des icônes `mdi:*` dans Home Assistant pour rester lisibles dans les tableaux de bord
 
 ---
 
