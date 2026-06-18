@@ -5,3 +5,10 @@ __pycache__/
 .env
 *.zip
 AGENTS.md
+.cursor/
+.cursorrules
+.copilot/
+.env.*
+*.pem
+*.key
+secrets.yaml
