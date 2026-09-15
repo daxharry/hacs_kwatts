@@ -1,109 +1,109 @@
-# Kwatts – Intégration Home Assistant
+# Kwatts – Home Assistant integration
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
-Intégration non-officielle pour [Kwatts](https://apps.kwatts.fr) dans Home Assistant.
+Unofficial [Kwatts](https://apps.kwatts.fr) integration for Home Assistant.
 
-## Objectif
+## Purpose
 
-Cette intégration ajoute Kwatts à Home Assistant pour suivre les signaux quotidiens utiles à l'optimisation de la consommation électrique : couleur du jour, code, prix estimé, conseil, statut de disponibilité et prix EPEX Spot France.
+This integration adds Kwatts to Home Assistant to track daily signals that help optimize electricity use: day color, code, estimated price, advice, availability status, and France EPEX Spot price.
 
-Elle interroge l'API Kwatts avec votre clé API, crée les entités Home Assistant correspondantes et actualise les données selon l'intervalle configuré. Le prix EPEX Spot est récupéré séparément depuis Energy-Charts.info.
+It queries the Kwatts API with your API key, creates the corresponding Home Assistant entities, and refreshes data on the configured interval. The EPEX Spot price is fetched separately from Energy-Charts.info.
 
 ---
 
-## Fonctionnalités
+## Features
 
-Cette intégration expose les entités suivantes :
+This integration exposes the following entities:
 
-| Entité | Type | Description |
+| Entity | Type | Description |
 |--------|------|-------------|
-| `sensor.kwatts_couleur_du_jour` | Sensor | Couleur du jour (vert / orange / rouge) |
-| `sensor.kwatts_code_du_jour` | Sensor | Code numérique du jour |
-| `sensor.kwatts_prix_estime_du_jour` | Sensor | Prix estimé en €/MWh |
-| `sensor.kwatts_conseil_du_jour` | Sensor | Conseil textuel du jour |
-| `sensor.kwatts_date` | Sensor | Date de la donnée |
-| `sensor.kwatts_statut` | Sensor | Statut de l'intégration (voir ci-dessous) |
-| `sensor.kwatts_prix_epex_spot` | Sensor | Prix EPEX Spot actuel en €/kWh (France, Energy-Charts) |
-| `binary_sensor.kwatts_jour_favorable` | Binary Sensor | `on` si le jour est favorable (code ≥ 1) |
+| `sensor.kwatts_couleur_du_jour` | Sensor | Day color (green / orange / red) |
+| `sensor.kwatts_code_du_jour` | Sensor | Numeric day code |
+| `sensor.kwatts_prix_estime_du_jour` | Sensor | Estimated price in €/MWh |
+| `sensor.kwatts_conseil_du_jour` | Sensor | Daily advice text |
+| `sensor.kwatts_date` | Sensor | Data date |
+| `sensor.kwatts_statut` | Sensor | Integration status (see below) |
+| `sensor.kwatts_prix_epex_spot` | Sensor | Current EPEX Spot price in €/kWh (France, Energy-Charts) |
+| `binary_sensor.kwatts_jour_favorable` | Binary Sensor | `on` if the day is favorable (code ≥ 1) |
 
-Les données Kwatts sont actualisées **toutes les heures par défaut** (configurable). Le prix EPEX Spot est mis à jour toutes les **15 minutes** (slots de marché).
+Kwatts data is refreshed **every hour by default** (configurable). The EPEX Spot price is updated every **15 minutes** (market slots).
 
-Le sensor **Statut** reflète l'état de l'intégration en temps réel :
+The **Status** sensor reflects the live state of the integration:
 
-| Valeur | Signification |
-|--------|---------------|
-| `Prix disponibles` | Les données du jour sont reçues normalement |
-| `En attente de prix` | Normal en début de journée, l'API n'a pas encore publié les prix |
-| `Données manquantes` | Les prix ont disparu après avoir été reçus — anomalie côté API |
-| `Erreur` | Problème de connexion à l'API |
+| Value | Meaning |
+|--------|---------|
+| `Prix disponibles` | Today's data was received normally |
+| `En attente de prix` | Normal early in the day; the API has not published prices yet |
+| `Données manquantes` | Prices disappeared after they had been received — API-side anomaly |
+| `Erreur` | Problem connecting to the API |
 
-> **Note :** En début de journée, les données peuvent ne pas encore être disponibles. Le sensor "Couleur du jour" affiche alors **"En attente de prix"** et les autres entités restent disponibles avec des valeurs vides — c'est un comportement normal. Si les données deviennent à nouveau indisponibles après avoir été reçues, un avertissement est enregistré dans les logs Home Assistant.
+> **Note:** Early in the day, data may not be available yet. The "Day color" sensor then shows **"En attente de prix"** and the other entities stay available with empty values — this is expected. If data becomes unavailable again after it was received, a warning is written to the Home Assistant logs.
 
 ---
 
 ## Installation via HACS
 
-1. Ouvrez HACS dans Home Assistant
-2. Cliquez sur **Intégrations** → ⋮ → **Dépôts personnalisés**
-3. Ajoutez l'URL : `https://github.com/daxharry/hacs_kwatts`
-4. Catégorie : **Intégration**
-5. Cliquez sur **Télécharger**
-6. Redémarrez Home Assistant
+1. Open HACS in Home Assistant
+2. Click **Integrations** → ⋮ → **Custom repositories**
+3. Add the URL: `https://github.com/daxharry/hacs_kwatts`
+4. Category: **Integration**
+5. Click **Download**
+6. Restart Home Assistant
 
-Cette intégration HACS s'installe depuis le contenu de la branche du dépôt, sans archive de release GitHub. Le fichier `hacs.json` définit donc `zip_release: false`.
+This HACS integration is installed from the repository branch content, without a GitHub release archive. `hacs.json` therefore sets `zip_release: false`.
 
-## Installation manuelle
+## Manual installation
 
-1. Copiez le dossier `custom_components/kwatts/` dans votre répertoire `/config/custom_components/`
-2. Redémarrez Home Assistant
+1. Copy the `custom_components/kwatts/` folder into `/config/custom_components/`
+2. Restart Home Assistant
 
 ---
 
 ## Configuration
 
-1. Allez dans **Paramètres → Appareils & Services → Ajouter une intégration**
-2. Recherchez **Kwatts**
-3. Entrez votre clé API disponible sur [apps.kwatts.fr/advices](https://apps.kwatts.fr/advices)
+1. Go to **Settings → Devices & services → Add integration**
+2. Search for **Kwatts**
+3. Enter your API key from [apps.kwatts.fr/advices](https://apps.kwatts.fr/advices)
 
-### Prix EPEX Spot
+### EPEX Spot price
 
-Le sensor `kwatts_prix_epex_spot` affiche le prix de marché brut de l'électricité pour la France, fourni par [Energy-Charts.info](https://energy-charts.info) :
+The `kwatts_prix_epex_spot` sensor shows the raw wholesale electricity price for France, provided by [Energy-Charts.info](https://energy-charts.info):
 
-- Source : EPEX Spot, zone FR
-- Unité : **€/kWh** (converti depuis EUR/MWh)
-- Mise à jour : toutes les 15 minutes
-- Prix brut, sans surcharge ni taxe
+- Source: EPEX Spot, FR zone
+- Unit: **€/kWh** (converted from EUR/MWh)
+- Update: every 15 minutes
+- Raw price, without surcharge or tax
 
 ---
 
 ## Options
 
-Après l'installation, vous pouvez modifier l'intervalle de mise à jour :
+After installation you can change the update interval:
 
-1. Allez dans **Paramètres → Appareils & Services → Kwatts**
-2. Cliquez sur **Configurer**
-3. Définissez l'intervalle souhaité (en minutes)
+1. Go to **Settings → Devices & services → Kwatts**
+2. Click **Configure**
+3. Set the desired interval (in minutes)
 
-> **Limite API :** L'API Kwatts est limitée à **40 requêtes par jour**. L'intervalle conseillé est de **60 minutes** (24 requêtes/jour). La valeur minimale autorisée est de 60 minutes.
+> **API limit:** The Kwatts API is limited to **40 requests per day**. The recommended interval is **60 minutes** (24 requests/day). The minimum allowed value is 60 minutes.
 
 ---
 
-## Prérequis
+## Requirements
 
 - Home Assistant ≥ 2023.1.0
-- Un compte Kwatts avec une clé API valide
+- A Kwatts account with a valid API key
 
 ---
 
-## Icône
+## Icon
 
-- HACS et Home Assistant utilisent les icônes locales : `custom_components/kwatts/brand/icon.png` et `custom_components/kwatts/brand/logo.png`
-- `icon.png` à la racine sert uniquement à l'affichage GitHub (`info.md`)
-- Les entités exposent aussi des icônes `mdi:*` dans Home Assistant pour rester lisibles dans les tableaux de bord
+- HACS and Home Assistant use the local icons: `custom_components/kwatts/brand/icon.png` and `custom_components/kwatts/brand/logo.png`
+- Root `icon.png` is only used for GitHub display (`info.md`)
+- Entities also expose `mdi:*` icons in Home Assistant so they stay readable on dashboards
 
 ---
 
-## Licence
+## License
 
 MIT License

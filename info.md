@@ -1,32 +1,32 @@
-# Kwatts pour Home Assistant
+# Kwatts for Home Assistant
 
 <p align="center">
   <img src="icon.png" alt="Kwatts" width="128" height="128">
 </p>
 
-Intégration non-officielle des données **Kwatts** dans Home Assistant.
+Unofficial **Kwatts** integration for Home Assistant.
 
-Elle interroge l'API Kwatts avec votre clé API, expose la couleur du jour, le prix estimé, le conseil, l'indicateur de jour favorable et le statut de disponibilité. Elle ajoute aussi un capteur de prix EPEX Spot France via Energy-Charts.info.
+It queries the Kwatts API with your API key and exposes the day color, estimated price, advice, favorable-day indicator, and availability status. It also adds a France EPEX Spot price sensor via Energy-Charts.info.
 
-Cette intégration HACS s'installe directement depuis le contenu du dépôt, sans release GitHub.
+This HACS integration is installed directly from the repository content, without a GitHub release.
 
-## Entités créées
+## Created entities
 
-- 🟢🟠🔴 **Couleur du jour**
-- 🔢 **Code du jour**
-- 💶 **Prix estimé (€/MWh)**
-- 💬 **Conseil du jour**
+- 🟢🟠🔴 **Day color**
+- 🔢 **Day code**
+- 💶 **Estimated price (€/MWh)**
+- 💬 **Daily advice**
 - 📅 **Date**
-- ⚡ **Prix EPEX Spot France**
-- ℹ️ **Statut de l'intégration**
-- ☀️ **Jour favorable** *(binary sensor)*
+- ⚡ **France EPEX Spot price**
+- ℹ️ **Integration status**
+- ☀️ **Favorable day** *(binary sensor)*
 
-## Icône
+## Icon
 
-- HACS et Home Assistant utilisent `custom_components/kwatts/brand/icon.png` et `custom_components/kwatts/brand/logo.png`.
-- `icon.png` à la racine sert uniquement à l'affichage de cette page.
-- Les entités ont des icônes `mdi:*` dédiées.
+- HACS and Home Assistant use `custom_components/kwatts/brand/icon.png` and `custom_components/kwatts/brand/logo.png`.
+- Root `icon.png` is only used to display this page.
+- Entities have dedicated `mdi:*` icons.
 
-## Clé API
+## API key
 
-Obtenez votre clé sur [apps.kwatts.fr/advices](https://apps.kwatts.fr/advices)
+Get your key at [apps.kwatts.fr/advices](https://apps.kwatts.fr/advices)
