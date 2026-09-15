@@ -8,13 +8,22 @@
         "data": {
           "api_key": "Clé API"
         }
+      },
+      "reconfigure": {
+        "title": "Reconfigurer Kwatts",
+        "description": "Entrez votre clé API disponible sur {url}",
+        "data": {
+          "api_key": "Clé API"
+        }
       }
     },
     "error": {
       "invalid_auth": "Clé API invalide. Vérifiez votre clé sur https://apps.kwatts.fr/advices"
     },
     "abort": {
-      "already_configured": "Kwatts est déjà configuré."
+      "already_configured": "Kwatts est déjà configuré.",
+      "reconfigure_successful": "La reconfiguration a réussi.",
+      "unique_id_mismatch": "Cette clé API appartient à une autre entrée Kwatts."
     }
   },
   "options": {
